@@ -137,3 +137,34 @@ def testAll(filename: str, ioPath: str = None, timeout: float = None, verbose: b
         if re.match("\\w+\\."+__in_ext__, file):
             ioFile = ioPath + '/' + dropExtension(file, "." + __in_ext__)
             test(filename, ioFileName=ioFile, timeout=timeout, verbose=verbose)
+
+
+def makeSampleFile(filename: str, text: str):
+    fout = open(filename, "w")
+    fout.write(text)
+    fout.close()
+
+
+def loadSample(verbose: bool = True):
+    dirName = "SampleData"
+    os.makedirs(dirName, exist_ok=True)
+
+    # source file
+    makeSampleFile(dirName + "/test.py", """
+a = int(input())
+b = int(input())
+
+print(f"a + b = {a + b}")
+    """)
+    # test file 0: expected pass
+    makeSampleFile(dirName + "/test0.in", "3\n4")
+    makeSampleFile(dirName + "/test0.ans", "a + b = 7")
+    # test file 1: expected fail
+    makeSampleFile(dirName + "/test1.in", "1\n1")
+    makeSampleFile(dirName + "/test1.ans", "a + b = 5")
+    # test file 2: expected pass
+    makeSampleFile(dirName + "/test2.in", "2\n1")
+    makeSampleFile(dirName + "/test2.ans", "a + b = 3")
+
+    if(verbose):
+        print("SampleData가 성공적으로 생성되었습니다.")

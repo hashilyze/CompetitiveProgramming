@@ -2,10 +2,10 @@ import setuptools
 
 setuptools.setup(
     name='BJSCP',
-    version='0.0.1',
+    version='0.0.3',
     description='Helper for competitive programming',
     author='JUNSU BAE',
-    author_email='hashilyze@gmail.com',
+    author_email='jsbae1023@gmail.com',
     url="https://github.com/hashilyze/CompetitiveProgramming",
     download_url="https://github.com/hashilyze/CompetitiveProgramming",
     pacakges=setuptools.find_packages(exclude=[]),
